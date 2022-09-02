@@ -1,7 +1,7 @@
 # AngularSpotifyClone
 
 This is a change made directly on Github
-And this one was made in vscode
+And this one was made in vscode...
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
 
 ## Development server
