@@ -1,0 +1,26 @@
+@import 'variables';
+
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 300px;
+    width: 300px;
+    padding: 40px 20px 20px 20px;
+    
+    .topArtists {
+        flex-grow: 1;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .player {
+        max-height: 60%;
+    }
+
+}

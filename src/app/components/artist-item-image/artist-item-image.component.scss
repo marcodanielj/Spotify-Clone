@@ -1,0 +1,28 @@
+@import 'variables';
+
+.container {
+    align-items: center;
+    padding: 10px 10px;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: rgba($preto-transparente, $alpha: .08);
+    }
+    
+    img {
+        width: 30px;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        flex-grow: 0;
+    }
+
+    span {
+        font-size: .85rem;
+        font-weight: 500;
+        padding: 0px 10px;
+        color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

@@ -1,0 +1,11 @@
+<button type="button"
+    [class.selected]="isSelected"
+    [class.menu]="buttonType === 'menu'"
+    [class.topic]="buttonType === 'topic'"
+    (click)="onClick()"
+    >
+    <ng-content></ng-content>
+    <span>
+        {{ buttonName }}
+    </span>
+</button>

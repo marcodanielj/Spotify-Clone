@@ -1,0 +1,58 @@
+@import 'variables';
+
+.container {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .image {
+        width: 100%;
+        aspect-ratio: 1;
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .status {
+        
+        padding: 10px;
+        background-color: $preto-transparente;
+        flex-grow: 1;
+
+            .trackName {
+                color: white;
+                font-size: .9rem;
+                font-weight: 500;
+                flex-grow: 1;
+                margin-bottom: 3px;
+            }
+    
+            .artistName {
+                color: rgba(white, $alpha: 0.5);
+                font-size: .8rem;
+                font-weight: 500;
+                flex-grow: 1;
+            }
+        
+
+        .buttons {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 1.2rem;
+
+            * {
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+
+                &:hover {
+                    background-color: rgba(white, $alpha: .2);
+                }
+            }
+        }
+    }
+}

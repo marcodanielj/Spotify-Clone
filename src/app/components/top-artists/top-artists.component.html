@@ -1,0 +1,8 @@
+<span>Mais escutados</span>
+
+<app-artist-item-image
+    *ngFor="let artist of topArtists"
+    class="topArtist"
+    [imageSrc]="artist.imageURL">
+    {{ artist.name }}
+</app-artist-item-image>

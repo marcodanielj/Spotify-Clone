@@ -1,0 +1,27 @@
+<div class="container card p-10">
+    <div class="image" [style.background-image]="'url(' + currentTrack.album.imageURL + ')'"></div>
+    <div class="status">
+
+            <div class="trackName">
+                {{currentTrack.name}}
+            </div>
+            
+            <div class="artistName">
+                {{currentTrack.artists[0].name}}
+            </div>
+
+         <div class="buttons">
+
+            <fa-icon 
+            [icon]="backIcon"
+            (click)="previousTrack()">
+            </fa-icon>
+
+            <fa-icon 
+            [icon]="nextIcon"
+            (click)="nextTrack()">
+            </fa-icon>
+
+         </div>
+    </div>
+</div>
