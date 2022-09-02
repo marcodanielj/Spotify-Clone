@@ -1,6 +1,8 @@
 @import 'table';
 
 :host {
+
+    
     display: flex;
     justify-content:space-between;
     
@@ -18,11 +20,21 @@
     }
 
     .lista {
+
         padding: 0px 50px;
         padding-bottom: 20px;
         width: 100%;
         max-height: 100vh;
         overflow-y: scroll;
+
+        .isSearchVisible {
+            visibility: hidden;
+            position: absolute;
+        }
+
+        .isTableVisible {
+            visibility: hidden;
+        }
     }
 
     .painel-direito {

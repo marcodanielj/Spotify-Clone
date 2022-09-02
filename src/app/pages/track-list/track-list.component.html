@@ -1,7 +1,17 @@
 <div class="lista">
-    <app-header [imageURL]="headerImageURL" [title]="headerText"></app-header>
+    <app-header [imageURL]="headerImageURL" 
+                [hideImage]="isSearchVisible"
+                [hideHeader]="isSearchVisible"
+                [title]="headerText"
+                [type]="headerType"
+                ></app-header>
 
-    <table class="table mt-3">
+    <app-recent-searches
+    [class.isSearchVisible]="!isSearchVisible"
+    ></app-recent-searches>
+
+    <table class="table mt-3"
+    [class.isTableVisible]="!isTableVisible">
         <thead>
             <tr>
                 <!-- th are the titles used on the table head in which the tbody will align to-->
@@ -21,7 +31,7 @@
                     <fa-icon class="play" [icon]="playIcon"></fa-icon>
                 </td>
                 <td> {{ track.name }} </td>
-                <td> {{ getArtists(track) }} </td>
+                <td (click)="goToArtist(track.artists[0].id)"> {{ getArtists(track) }} </td>
                 <td class="direita"> {{ track.duration }} </td>
                 <td> {{ track.album.name }}</td>
             </tr>

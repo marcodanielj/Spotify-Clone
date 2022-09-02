@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
   selector: 'app-recent-searches',
@@ -7,25 +9,26 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class RecentSearchesComponent implements OnInit {
 
-  recentSearches = [
-    'Top Brasil',
-    'Top Global',
-    'Esquenta Sertanejo',
-    'Funk Hits',
-    'Pagodin'
-  ]
+  recentSearches: string[] = [];
 
-  selectedTopic = '';
+  searchText = '';
 
   buttonClick(topic: string) {
-
-    this.selectedTopic = topic;
-
+    this.router.navigateByUrl(`player/list/search/${this.searchText}`);
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  goToSearchResults() {
+    if (this.searchText !== '') {
+      this.recentSearches.push(this.searchText);
+    }
+    this.router.navigateByUrl(`player/list/search/${this.searchText}`);
+  }
+
+
 
 }

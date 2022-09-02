@@ -2,22 +2,22 @@
 
 :host {
     input {
-        width: 100%;
-        padding: 5px 5px;
-        border-radius: 5px;
-        border-color: rgba($preto-transparente, $alpha: .08);
+        width: 30%;
+        padding: 10px 10px;
+        border-radius: 20px;
+        border: 0px;
         outline: none;
-        color: $preto-transparente-70;
+        color: rgba($preto, $alpha: 1);
         font-size: .85rem;
         font-weight: 400;
 
         &::placeholder {
-            color: $preto-transparente-30;
-            font-size: .85rem;
+            color: rgba($preto, $alpha: .5);
+            font-size: .80rem;
         }
 
         &:focus, &:active {
-            border-color: rgba($preto-transparente, $alpha: .2);
+            
             border-width: 2px;
         }
     }

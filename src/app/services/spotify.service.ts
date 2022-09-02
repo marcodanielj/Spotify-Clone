@@ -7,6 +7,7 @@ import { IPlaylist } from '../interfaces/IPlaylist';
 import { Router } from '@angular/router';
 import { IArtist } from '../interfaces/IArtist';
 import { ITrack } from '../interfaces/ITrack';
+import { newTrack } from '../Common/factories';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class SpotifyService {
 
   spotifyApi: Spotify.SpotifyWebApiJs = null;
   usuario: IUsuario;
+
 
   constructor(private router: Router) { 
     this.spotifyApi = new Spotify();
@@ -96,8 +98,23 @@ export class SpotifyService {
     await this.spotifyApi.skipToPrevious();
   }
 
+  async playPauseTrack() {
+
+    const playingState = await this.spotifyApi.getMyCurrentPlaybackState();
+    
+    if (playingState)
+    await this.spotifyApi.pause();
+    else
+    await this.spotifyApi.play();
+  }
+
   async playNextTrack() {
     await this.spotifyApi.skipToNext();
+  }
+
+  async getSearchResults(query: string, type: ("album" | "artist" | "playlist" | "track")[]) {
+    const queryResults = await this.spotifyApi.search(query, type);
+    return queryResults;
   }
 
   async getPlaylistTracks(id: string, offset = 0, limit = 50) {

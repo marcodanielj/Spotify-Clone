@@ -36,6 +36,10 @@ export class PlayerService {
     await this.spotifyService.playPreviousTrack();
   }
 
+  async playPauseTrack() {
+    await this.spotifyService.playPauseTrack();
+  }
+
   async nextTrack() {
     await this.spotifyService.playNextTrack();
   }

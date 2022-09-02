@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { newTrack } from 'src/app/Common/factories';
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private spotifyService: SpotifyService,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getArtists(track: ITrack) {
     return track.artists.map(x => x.name).join(', ');
+  }
+
+  goToArtist(artistID: string) {
+    this.router.navigateByUrl(`player/list/artist/${artistID}`);
   }
 
   async playTrack(track: ITrack) {

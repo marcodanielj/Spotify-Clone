@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
+import { faPause, faPlay, faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { newTrack } from 'src/app/Common/factories';
 import { ITrack } from 'src/app/interfaces/ITrack';
@@ -17,6 +17,8 @@ export class PlayerCardComponent implements OnInit, OnDestroy {
 
   backIcon = faStepBackward;
   nextIcon = faStepForward;
+  playIcon = faPlay;
+  pauseIcon = faPause;
 
   constructor(private playerService: PlayerService) { }
 
@@ -38,6 +40,10 @@ export class PlayerCardComponent implements OnInit, OnDestroy {
 
   previousTrack() {
     this.playerService.previousTrack();
+  }
+
+  pauseTrack() {
+    this.playerService.playPauseTrack();
   }
 
   nextTrack() {

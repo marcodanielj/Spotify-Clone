@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { newTrack } from 'src/app/Common/factories';
+import { SpotifyTrackToLocalTrack } from 'src/app/Common/spotifyHelper';
 import { ITrack } from 'src/app/interfaces/ITrack';
 import { PlayerService } from 'src/app/services/player.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
@@ -16,6 +17,7 @@ export class TrackListComponent implements OnInit, OnDestroy {
 
   headerImageURL = '';
   headerText = '';
+  headerType = '';
 
   tracks: ITrack[] = [];
   currentTrack: ITrack = newTrack();
@@ -24,7 +26,10 @@ export class TrackListComponent implements OnInit, OnDestroy {
 
   pageTitle = '';
 
-  constructor(private activatedRoute: ActivatedRoute, private spotifyService: SpotifyService, private playerService: PlayerService) { }
+  isSearchVisible = true;
+  isTableVisible = false;
+
+  constructor(private activatedRoute: ActivatedRoute, private spotifyService: SpotifyService, private playerService: PlayerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTracks();
@@ -44,6 +49,7 @@ export class TrackListComponent implements OnInit, OnDestroy {
   }
 
   getTracks() {
+
     const sub = this.activatedRoute.paramMap.subscribe(async params => {
       const type = params.get('type');
       const id = params.get('id');
@@ -53,31 +59,65 @@ export class TrackListComponent implements OnInit, OnDestroy {
     this.subs.push(sub);
   }
 
-  async getData(type: string, id: string) {
-    if (type === 'playlist')
-    await this.getPlaylistData(id);
-    else
-    await this.getArtistData(id);
+  async getData(type?: string, id?: string) {
+
+    
+    if (type === 'playlist') {
+      await this.getPlaylistData(id);
+      this.isSearchVisible = false;
+      this.isTableVisible = true;
+    }
+    else if (type === 'artist') {
+      await this.getArtistData(id);
+      this.isSearchVisible = false;
+      this.isTableVisible = true;
+    }
+    else if (id !== '') {
+      await this.getSearchData(id);
+      this.isSearchVisible = true;
+      this.isTableVisible = true;
+  }
+    else if (id === '') {
+      this.isSearchVisible = true;
+      this.isTableVisible = false;
+      this.headerText = "Search";
+      this.headerType = "";
+      this.tracks = [];
+    }
+
   }
 
   async getPlaylistData(playlistID: string) {
+
     const playlistWithTracks = await this.spotifyService.getPlaylistTracks(playlistID);
-    this.setPageData(playlistWithTracks.name, playlistWithTracks.imageURL, playlistWithTracks.tracks);
+    this.setPageData(playlistWithTracks.name, playlistWithTracks.imageURL, "PLAYLIST", playlistWithTracks.tracks);
   }
 
   async getArtistData(artistID: string) {
+
     const artistWithTopTacks = await this.spotifyService.getArtistTopTracks(artistID);
-    this.setPageData(artistWithTopTacks.name, artistWithTopTacks.imageURL, artistWithTopTacks.tracks);
+    this.setPageData(artistWithTopTacks.name, artistWithTopTacks.imageURL, "ARTIST", artistWithTopTacks.tracks);
   }
 
-  setPageData(text: string, imageURL: string, tracks: ITrack[]) {
+  async getSearchData(queryID: string) {
+    
+    const searchResults = await this.spotifyService.getSearchResults(queryID, ["track"]);
+    this.setPageData(`"${queryID}"`, "", "SEARCH", searchResults.tracks.items.map(track => SpotifyTrackToLocalTrack(track)));
+  }
+
+  setPageData(text: string, imageURL: string, type: string, tracks: ITrack[]) {
     this.headerImageURL = imageURL;
     this.headerText = text;
+    this.headerType = type;
     this.tracks = tracks;
   }
 
   getArtists(track: ITrack) {
     return track.artists.map(x => x.name).join(', ');
+  }
+
+  goToArtist(artistID: string) {
+    this.router.navigateByUrl(`player/list/artist/${artistID}`);
   }
 
   async playTrack(track: ITrack) {

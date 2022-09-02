@@ -33,6 +33,12 @@ export class PainelEsquerdoComponent implements OnInit {
   this.router.navigateByUrl('player/home')
   }
 
+  goToSearch() {
+    this.selectedMenu = "Buscar"
+    const searchID = ''
+    this.router.navigateByUrl(`player/list/search/${searchID}`)
+  }
+
   goToPlaylist(playlistID: string) {
     this.selectedMenu = playlistID;
     this.router.navigateByUrl(`player/list/playlist/${playlistID}`);

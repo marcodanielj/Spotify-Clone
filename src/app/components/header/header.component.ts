@@ -13,6 +13,15 @@ export class HeaderComponent implements OnInit {
   @Input()
   title = '';
 
+  @Input()
+  type = '';
+
+  @Input()
+  hideImage = false;
+
+  @Input()
+  hideHeader = false;
+
   constructor() { }
 
   ngOnInit(): void {
