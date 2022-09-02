@@ -61,12 +61,13 @@ export class TrackListComponent implements OnInit, OnDestroy {
   }
 
   async getPlaylistData(playlistID: string) {
-    const playlistTracks = await this.spotifyService.getPlaylistTracks(playlistID);
-    this.setPageData(playlistTracks.name, playlistTracks.imageURL, playlistTracks.tracks);
+    const playlistWithTracks = await this.spotifyService.getPlaylistTracks(playlistID);
+    this.setPageData(playlistWithTracks.name, playlistWithTracks.imageURL, playlistWithTracks.tracks);
   }
 
-  getArtistData(artistID: string) {
-
+  async getArtistData(artistID: string) {
+    const artistWithTopTacks = await this.spotifyService.getArtistTopTracks(artistID);
+    this.setPageData(artistWithTopTacks.name, artistWithTopTacks.imageURL, artistWithTopTacks.tracks);
   }
 
   setPageData(text: string, imageURL: string, tracks: ITrack[]) {

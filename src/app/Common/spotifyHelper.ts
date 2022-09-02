@@ -3,13 +3,14 @@ import { IArtist } from "../interfaces/IArtist";
 import { IPlaylist } from "../interfaces/IPlaylist";
 import { ITrack } from "../interfaces/ITrack";
 import { IUsuario } from "../interfaces/IUsuario";
-import { newPlaylist, newTrack } from "./factories";
+import { newArtist, newPlaylist, newTrack } from "./factories";
 
 // Transforms the Spotify API data into local data
 
 export function SpotifyUserToLocalUser(user: SpotifyApi.CurrentUsersProfileResponse): IUsuario {
     return {
         id: user.id,
+        country: user.country,
         nome: user.display_name,
         imagemURL: user.images.pop().url
     }
@@ -47,6 +48,19 @@ export function SpotifyArtistToLocalArtist(artist: SpotifyApi.ArtistObjectFull):
         id: artist.id,
         imageURL: artist.images.sort((a,b) => a.width - b.width).pop().url,
         name: artist.name
+    }
+}
+
+export function SpotifyFullArtistToLocalFullArtist(artist: SpotifyApi.ArtistObjectFull): IArtist {
+
+    if (!artist)
+    return newArtist();
+
+    return {
+        id: artist.id,
+        imageURL: artist.images.sort((a,b) => a.width - b.width).pop().url,
+        name: artist.name,
+        tracks: []
     }
 }
 

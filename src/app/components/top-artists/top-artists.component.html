@@ -2,6 +2,7 @@
 
 <app-artist-item-image
     *ngFor="let artist of topArtists"
+    (click)="goToArtist(artist.id)"
     class="topArtist"
     [imageSrc]="artist.imageURL">
     {{ artist.name }}

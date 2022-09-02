@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SpotifyConfiguration } from 'src/environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { IUsuario } from '../interfaces/IUsuario';
-import { SpotifyArtistToLocalArtist, SpotifyFullPlaylistToLocalFullPlaylist, SpotifyPlaylistToLocalPlaylist, SpotifyTrackToLocalTrack, SpotifyUserToLocalUser } from '../Common/spotifyHelper';
+import { SpotifyArtistToLocalArtist, SpotifyFullArtistToLocalFullArtist, SpotifyFullPlaylistToLocalFullPlaylist, SpotifyPlaylistToLocalPlaylist, SpotifyTrackToLocalTrack, SpotifyUserToLocalUser } from '../Common/spotifyHelper';
 import { IPlaylist } from '../interfaces/IPlaylist';
 import { Router } from '@angular/router';
 import { IArtist } from '../interfaces/IArtist';
@@ -113,6 +113,22 @@ export class SpotifyService {
     playlist.tracks = tracks.items.map(allTracks => SpotifyTrackToLocalTrack(allTracks.track as SpotifyApi.TrackObjectFull));
     
     return playlist;
+  }
+
+  async getArtistTopTracks(id: string, offset = 0, limit = 10) {
+
+    const artistSpotify = await this.spotifyApi.getArtist(id);
+
+    if(!artistSpotify)
+      return null;
+
+    const artist = SpotifyFullArtistToLocalFullArtist(artistSpotify);
+
+    const topTracksSpotify = await this.spotifyApi.getArtistTopTracks(id, 'US', {offset, limit});
+    artist.tracks = topTracksSpotify.tracks.map(x => SpotifyTrackToLocalTrack(x));
+
+    return artist;
+
   }
 
   logout() {
