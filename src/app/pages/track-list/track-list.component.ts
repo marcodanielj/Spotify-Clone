@@ -26,7 +26,7 @@ export class TrackListComponent implements OnInit, OnDestroy {
 
   pageTitle = '';
 
-  isSearchVisible = true;
+  isSearchVisible = false;
   isTableVisible = false;
 
   constructor(private activatedRoute: ActivatedRoute, private spotifyService: SpotifyService, private playerService: PlayerService, private router: Router) { }
@@ -80,9 +80,10 @@ export class TrackListComponent implements OnInit, OnDestroy {
     else if (id === '') {
       this.isSearchVisible = true;
       this.isTableVisible = false;
-      this.headerText = "Search";
+      this.headerText = "Buscar";
       this.headerType = "";
       this.tracks = [];
+      this.headerImageURL = "";
     }
 
   }
@@ -102,7 +103,7 @@ export class TrackListComponent implements OnInit, OnDestroy {
   async getSearchData(queryID: string) {
     
     const searchResults = await this.spotifyService.getSearchResults(queryID, ["track"]);
-    this.setPageData(`"${queryID}"`, "", "SEARCH", searchResults.tracks.items.map(track => SpotifyTrackToLocalTrack(track)));
+    this.setPageData("", "", "", searchResults.tracks.items.map(track => SpotifyTrackToLocalTrack(track)));
   }
 
   setPageData(text: string, imageURL: string, type: string, tracks: ITrack[]) {
@@ -110,6 +111,7 @@ export class TrackListComponent implements OnInit, OnDestroy {
     this.headerText = text;
     this.headerType = type;
     this.tracks = tracks;
+    document.querySelector('.lista').scrollTo(0,0);
   }
 
   getArtists(track: ITrack) {

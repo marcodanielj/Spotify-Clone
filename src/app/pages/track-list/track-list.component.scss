@@ -2,9 +2,8 @@
 
 :host {
 
-    
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     
     ::-webkit-scrollbar {
 
@@ -14,30 +13,48 @@
         &-thumb {
             background-color: rgba($color: $cor-primaria, $alpha: 0.2);
             border-radius: 10px;
-            
         }
-
     }
 
-    .lista {
-
-        padding: 0px 50px;
-        padding-bottom: 20px;
+    .content {
+        position: relative;
         width: 100%;
-        max-height: 100vh;
+        height: 100vh;
         overflow-y: scroll;
+        overflow-x: hidden;
 
-        .isSearchVisible {
-            visibility: hidden;
+        .lista {
             position: absolute;
-        }
+            padding: 0px 50px;
+            padding-bottom: 20px;
+            z-index: 1;
+        
+            .isSearchVisible {
+                visibility: hidden;
+                position: absolute;
+                }
+        
+            .isTableVisible {
+                visibility: hidden;
+                }
+            }
 
-        .isTableVisible {
-            visibility: hidden;
-        }
+            .background {
+                position: absolute;
+                top: -15%;
+                left: -15%;
+                height: 125%;
+                width: 125%;
+                background-position: center;
+                background-size:cover;
+                opacity: .3;
+                filter: blur(100px);
+                z-index: 0;
+            }
     }
 
     .painel-direito {
         height: 100vh;
     }
+
 }
