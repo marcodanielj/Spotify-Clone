@@ -1,6 +1,7 @@
 <button type="button"
     [class.selected]="isSelected"
     [class.menu]="buttonType === 'menu'"
+    [class.playlist]="buttonType === 'playlist'"
     [class.topic]="buttonType === 'topic'"
     (click)="onClick()"
     >

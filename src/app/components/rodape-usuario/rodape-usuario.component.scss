@@ -2,12 +2,12 @@
 
 div {
 
-    padding: 5px 30px;
+    padding: 5px 5px;
     justify-content: space-between;
     align-items: center;
     height: 100%;
     width: 100%;
-    color: $cor-primaria;
+    color: white;
     border-top: 1px solid $preto-transparente;
 
     img {
@@ -21,7 +21,7 @@ div {
         flex-grow: 1;
         margin-left: 20px;
         font-size: .9rem;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .icon {

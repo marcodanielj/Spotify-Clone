@@ -26,11 +26,13 @@
     
     span {
         color: white;
+        font-size: 4rem;
+        font-weight: 600;
     }
 
     .type {
         font-size: .7rem;
-        font-weight: 400;
+        font-weight: 500;
     }
 
     .image {
@@ -38,19 +40,19 @@
         &.playlist {
             height: 350px;
             aspect-ratio: 1;
-            border-radius: 5px;
+            border-radius: 0px;
             background-position: center;
             background-size: cover;
-            box-shadow: 0px 0px 40px 5px #0000005e;
+            box-shadow: 0px 0px 40px 20px #0000002f;
         }
 
         &.album {
             height: 350px;
             aspect-ratio: 1;
-            border-radius: 5px;
+            border-radius: 0px;
             background-position: center;
             background-size: cover;
-            box-shadow: 0px 0px 40px 5px #0000005e;
+            box-shadow: 0px 0px 40px 20px #0000002f;
         }
 
         &.artist {

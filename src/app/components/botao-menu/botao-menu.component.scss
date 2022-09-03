@@ -6,16 +6,16 @@
 
         // the styling will be different according to the button type
 
-        &.menu {
+        &.playlist {
             width: 100%;
             display: inline-block;
-            padding: 10px 0px 10px 20px;
+            padding: 0px 0px 10px 0px;
             border: 0;
             border-radius: 5px;
             text-align: left;
-            font-weight: 400;
-            font-size: 1rem;
-            color: white;
+            font-weight: 500;
+            font-size: .9rem;
+            color: rgba($color: white, $alpha: .6);
             background-color: transparent;
             vertical-align: baseline;
             white-space: noWrap;
@@ -23,36 +23,37 @@
             text-overflow: ellipsis;
 
             span {
-                margin-left: 15px;
+                margin-left: 0px;
             }
 
             &:hover {
-                &.selected {
-                    background-color: rgba(255, 255, 255, 0.296);
-                }
-                background-color: rgba(255, 255, 255, 0.09);
+                color: white;
+            }
+            &.selected {
+                color: white;
             }
 
         }
         
-        &.topic {
-            background-color: $branco;
-            margin-right: 5px;
-            padding: 5px 10px;
+        &.menu {
+            width: 100%;
+            text-align: left;
+            padding: 8px;
+            margin-bottom: 5px;
+            background-color: rgba($color: white, $alpha: .05);
             color: $preto-transparente-70;
-            border: 1px solid rgba($preto-transparente-30, $alpha: .1);
-            margin-top: 10px;
+            border:none;
             font-size: .9rem;
-            border-radius: 20px;
+            font-weight: 500;
+            border-radius: 5px;
             
             &:hover {
                 background-color: rgba(255, 255, 255, 0.164);
             }
+            &.selected {
+                background-color: rgba(255, 255, 255, 0.296);
+            }
         }
 
-        &.selected {
-            background-color: rgba(255, 255, 255, 0.296);
-            
-        }
     }
 }

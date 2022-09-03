@@ -4,11 +4,3 @@
     (keyup.enter)="goToSearchResults()"
     placeholder="Artistas, músicas, playlists..."
 >
-<div class="suggestions flex">
-    <app-botao-menu *ngFor="let search of recentSearches"
-    [buttonName]="search"
-    [buttonType]="'topic'"
-    [isSelected]="searchText === search"
-    (click)="buttonClick(search)">
-    </app-botao-menu>
-</div>

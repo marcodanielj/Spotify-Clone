@@ -1,4 +1,6 @@
-<div class="content">
+<div class="content"
+    [class.invisible]="loading === true"
+>
 
         <div class="lista">
 
@@ -49,5 +51,3 @@
         [style.background-image]="'url(' + headerImageURL + ')'"></div>
 
 </div>
-
-<app-painel-direito class="painel-direito"></app-painel-direito>

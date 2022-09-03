@@ -10,7 +10,7 @@
     width: 300px;
     padding: 40px 20px 20px 20px;
     
-    .topArtists {
+    .userInfo {
         flex-grow: 1;
         overflow-y: auto;
 
@@ -19,8 +19,5 @@
         }
     }
 
-    .player {
-        max-height: 60%;
-    }
 
 }

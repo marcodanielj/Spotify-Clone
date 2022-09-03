@@ -2,17 +2,18 @@
 
 :host {
     input {
-        width: 30%;
-        padding: 10px 10px;
+        padding: 10px 80px 10px 15px;
         border-radius: 20px;
         border: 0px;
         outline: none;
-        color: rgba($preto, $alpha: 1);
+        color: rgba($color: white, $alpha: 1);
+        background-color: rgb(84, 84, 84);
         font-size: .85rem;
         font-weight: 400;
+        box-shadow: 0px 0px 40px 5px #00000074;
 
         &::placeholder {
-            color: rgba($preto, $alpha: .5);
+            color: rgba($color: white, $alpha: .5);
             font-size: .80rem;
         }
 
