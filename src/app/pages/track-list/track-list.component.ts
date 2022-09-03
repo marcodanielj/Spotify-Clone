@@ -72,6 +72,11 @@ export class TrackListComponent implements OnInit, OnDestroy {
       this.isSearchVisible = false;
       this.isTableVisible = true;
     }
+    else if (type === 'album') {
+      await this.getAlbumData(id);
+      this.isSearchVisible = false;
+      this.isTableVisible = true;
+    }
     else if (id !== '') {
       await this.getSearchData(id);
       this.isSearchVisible = true;
@@ -100,6 +105,12 @@ export class TrackListComponent implements OnInit, OnDestroy {
     this.setPageData(artistWithTopTacks.name, artistWithTopTacks.imageURL, "ARTIST", artistWithTopTacks.tracks);
   }
 
+  async getAlbumData(albumID: string) {
+
+    const albumWithTracks = await this.spotifyService.getAlbumTracks(albumID);
+    this.setPageData(albumWithTracks.name, albumWithTracks.imageURL, "ALBUM", albumWithTracks.tracks);
+  }
+
   async getSearchData(queryID: string) {
     
     const searchResults = await this.spotifyService.getSearchResults(queryID, ["track"]);
@@ -111,7 +122,7 @@ export class TrackListComponent implements OnInit, OnDestroy {
     this.headerText = text;
     this.headerType = type;
     this.tracks = tracks;
-    document.querySelector('.lista').scrollTo(0,0);
+    document.querySelector('.content').scrollTo(0,0);
   }
 
   getArtists(track: ITrack) {
@@ -120,6 +131,10 @@ export class TrackListComponent implements OnInit, OnDestroy {
 
   goToArtist(artistID: string) {
     this.router.navigateByUrl(`player/list/artist/${artistID}`);
+  }
+
+  goToAlbum(albumID: string) {
+    this.router.navigateByUrl(`player/list/album/${albumID}`);
   }
 
   async playTrack(track: ITrack) {

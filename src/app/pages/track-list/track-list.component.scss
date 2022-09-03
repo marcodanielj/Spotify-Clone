@@ -28,7 +28,14 @@
             padding: 0px 50px;
             padding-bottom: 20px;
             z-index: 1;
-        
+
+            .artistRow, .albumRow {
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+            
             .isSearchVisible {
                 visibility: hidden;
                 position: absolute;
@@ -47,7 +54,7 @@
                 width: 125%;
                 background-position: center;
                 background-size:cover;
-                opacity: .3;
+                opacity: .4;
                 filter: blur(100px);
                 z-index: 0;
             }

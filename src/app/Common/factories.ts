@@ -1,3 +1,4 @@
+import { IAlbum } from "../interfaces/IAlbum";
 import { IArtist } from "../interfaces/IArtist";
 import { IPlaylist } from "../interfaces/IPlaylist";
 import { ITrack } from "../interfaces/ITrack";
@@ -27,6 +28,15 @@ export function newTrack(): ITrack {
 }
 
 export function newPlaylist(): IPlaylist {
+    return {
+        id: '',
+        name: '',
+        imageURL: '',
+        tracks: []
+    }
+}
+
+export function newAlbum(): IAlbum {
     return {
         id: '',
         name: '',

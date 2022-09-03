@@ -8,10 +8,10 @@ export interface ITrack {
         id: string,
         name: string
     }[],
-    album: {
+    album?: {
         id: string,
         name: string,
-        imageURL: string
+        imageURL?: string
     },
     duration: string
 }

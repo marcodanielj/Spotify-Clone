@@ -1,9 +1,10 @@
 import { addMilliseconds, format } from "date-fns";
+import { IAlbum } from "../interfaces/IAlbum";
 import { IArtist } from "../interfaces/IArtist";
 import { IPlaylist } from "../interfaces/IPlaylist";
 import { ITrack } from "../interfaces/ITrack";
 import { IUsuario } from "../interfaces/IUsuario";
-import { newArtist, newPlaylist, newTrack } from "./factories";
+import { newAlbum, newArtist, newPlaylist, newTrack } from "./factories";
 
 // Transforms the Spotify API data into local data
 
@@ -64,6 +65,18 @@ export function SpotifyFullArtistToLocalFullArtist(artist: SpotifyApi.ArtistObje
     }
 }
 
+export function SpotifyAlbumToLocalAlbum(album: SpotifyApi.AlbumObjectFull): IAlbum {
+    if(!album)
+    return newAlbum();
+
+    return {
+        id: album.id,
+        name: album.name,
+        imageURL: album.images.sort((a,b) => a.width - b.width).pop().url,
+        tracks: []
+    }
+}
+
 export function SpotifyTrackToLocalTrack(track: SpotifyApi.TrackObjectFull): ITrack {
 
     if (!track)
@@ -81,6 +94,31 @@ export function SpotifyTrackToLocalTrack(track: SpotifyApi.TrackObjectFull): ITr
             id: track.album.id,
             imageURL: track.album.images.shift().url,
             name: track.album.name
+        },
+        artists: track.artists.map(artist => ({
+            id: artist.id,
+            name: artist.name
+        })),
+        duration: msParaMinutos(track.duration_ms)
+    }
+}
+
+export function SpotifyAlbumTrackToLocalAlbumTrack(track: SpotifyApi.TrackObjectSimplified): ITrack {
+
+    if (!track)
+    return newTrack();
+    const msParaMinutos = (ms: number) => {
+        const data = addMilliseconds(new Date(0), ms);
+        return format(data, 'mm:ss');
+    }
+
+    return {
+        id: track.id,
+        uri: track.uri,
+        name: track.name,
+        album: {
+            id: '',
+            name: ''
         },
         artists: track.artists.map(artist => ({
             id: artist.id,

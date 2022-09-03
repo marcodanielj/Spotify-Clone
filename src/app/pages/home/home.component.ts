@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`player/list/artist/${artistID}`);
   }
 
+  goToAlbum(albumID: string) {
+    this.router.navigateByUrl(`player/list/album/${albumID}`);
+  }
+
   async playTrack(track: ITrack) {
     this.playerService.setCurrentTrack(track);
     await this.spotifyService.playTrack(track.uri);

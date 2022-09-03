@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SpotifyConfiguration } from 'src/environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { IUsuario } from '../interfaces/IUsuario';
-import { SpotifyArtistToLocalArtist, SpotifyFullArtistToLocalFullArtist, SpotifyFullPlaylistToLocalFullPlaylist, SpotifyPlaylistToLocalPlaylist, SpotifyTrackToLocalTrack, SpotifyUserToLocalUser } from '../Common/spotifyHelper';
+import { SpotifyAlbumToLocalAlbum, SpotifyAlbumTrackToLocalAlbumTrack, SpotifyArtistToLocalArtist, SpotifyFullArtistToLocalFullArtist, SpotifyFullPlaylistToLocalFullPlaylist, SpotifyPlaylistToLocalPlaylist, SpotifyTrackToLocalTrack, SpotifyUserToLocalUser } from '../Common/spotifyHelper';
 import { IPlaylist } from '../interfaces/IPlaylist';
 import { Router } from '@angular/router';
 import { IArtist } from '../interfaces/IArtist';
@@ -146,6 +146,29 @@ export class SpotifyService {
 
     return artist;
 
+  }
+
+  async getAlbumTracks(id: string, offset = 0, limit = 40) {
+
+    const albumSpotify = await this.spotifyApi.getAlbum(id);
+
+    if (!albumSpotify)
+    return null;
+
+    const album = SpotifyAlbumToLocalAlbum(albumSpotify);
+
+    const albumTracksSpotify = await this.spotifyApi.getAlbumTracks(id, {offset, limit});
+
+    // This is necessary because the album tracks does not contain themselves the album name
+    // nor the id (different behavior compared to non-album related tracks)
+    // but we need it to display on the table
+
+    album.tracks = albumTracksSpotify.items.map(x => SpotifyAlbumTrackToLocalAlbumTrack(x));
+    album.tracks.map(x => x.album.id = album.id);
+    album.tracks.map(x => x.album.name = album.name);
+
+    return album;
+    
   }
 
   logout() {

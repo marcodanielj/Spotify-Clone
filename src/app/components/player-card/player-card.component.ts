@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faPause, faPlay, faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { newTrack } from 'src/app/Common/factories';
@@ -20,7 +21,7 @@ export class PlayerCardComponent implements OnInit, OnDestroy {
   playIcon = faPlay;
   pauseIcon = faPause;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCurrentTrack();
@@ -36,6 +37,14 @@ export class PlayerCardComponent implements OnInit, OnDestroy {
     })
 
     this.subs.push(sub);
+  }
+
+  goToArtist(artistID: string) {
+    this.router.navigateByUrl(`player/list/artist/${artistID}`);
+  }
+
+  goToAlbum(albumID: string) {
+    this.router.navigateByUrl(`player/list/album/${albumID}`);
   }
 
   previousTrack() {

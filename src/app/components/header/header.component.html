@@ -1,14 +1,19 @@
 <div class="header p-20"
-[class.hideHeader]="hideHeader">
+[class.hideHeader]="hideHeader"
+>
 
     <div class="image"
     [class.hideImage]="hideImage"
+    [class.artist]="type === 'ARTIST'"
+    [class.playlist]="type === 'PLAYLIST'"
+    [class.album]="type === 'ALBUM'"
     [style.background-image]="'url(' + imageURL + ')'"
     >
 
     </div>
 
-    <div class="artist flex">
+    <div class="info flex"
+    >
         <span class="type">{{type}}</span>
         <span class="titulo-bg">
             {{ title }}

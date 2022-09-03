@@ -1,12 +1,16 @@
 <div class="container card p-10">
-    <div class="image" [style.background-image]="'url(' + currentTrack.album.imageURL + ')'"></div>
+    <div class="image" [style.background-image]="'url(' + currentTrack.album.imageURL + ')'"
+    (click)="goToAlbum(currentTrack.album.id)"
+    ></div>
     <div class="status">
 
-            <div class="trackName">
+            <div class="trackName"
+            (click)="goToAlbum(currentTrack.album.id)">
                 {{currentTrack.name}}
             </div>
             
-            <div class="artistName">
+            <div class="artistName"
+            (click)="goToArtist(currentTrack.artists[0].id)">
                 {{currentTrack.artists[0].name}}
             </div>
 

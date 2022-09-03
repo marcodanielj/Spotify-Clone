@@ -35,9 +35,11 @@
                                 <fa-icon class="play" [icon]="playIcon"></fa-icon>
                             </td>
                             <td> {{ track.name }} </td>
-                            <td (click)="goToArtist(track.artists[0].id)"> {{ getArtists(track) }} </td>
+                            <td (click)="goToArtist(track.artists[0].id)"
+                                class="artistRow"> {{ getArtists(track) }} </td>
                             <td class="direita"> {{ track.duration }} </td>
-                            <td> {{ track.album.name }}</td>
+                            <td (click)="goToAlbum(track.album.id)"
+                                class="albumRow"> {{ track.album.name }}</td>
                         </tr>
                     </tbody>
                 </table>
