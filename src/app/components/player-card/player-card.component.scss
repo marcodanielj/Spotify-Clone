@@ -30,7 +30,12 @@
                 font-size: .9rem;
                 font-weight: 500;
                 flex-grow: 1;
-                margin-bottom: 3px;
+                margin-bottom: 5px;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
             }
     
             .artistName {
@@ -38,6 +43,12 @@
                 font-size: .8rem;
                 font-weight: 500;
                 flex-grow: 1;
+                margin-bottom: 15px;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
             }
         
 

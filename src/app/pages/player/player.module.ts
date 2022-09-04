@@ -17,6 +17,7 @@ import { ArtistItemImageComponent } from 'src/app/components/artist-item-image/a
 import { PlayerCardComponent } from 'src/app/components/player-card/player-card.component';
 import { TrackListComponent } from '../track-list/track-list.component';
 import { HeaderComponent } from 'src/app/components/header/header.component';
+import { LibraryComponent } from '../library/library.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
     ArtistItemImageComponent,
     PlayerCardComponent,
     TrackListComponent,
-    HeaderComponent
+    HeaderComponent,
+    LibraryComponent
   ],
   imports: [
     CommonModule,
