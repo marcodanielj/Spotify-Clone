@@ -68,6 +68,13 @@
         }
     }
 
+    .artistRow, .albumRow {
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+
     .direita {
         text-align: right;
     }
