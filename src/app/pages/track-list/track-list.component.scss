@@ -32,13 +32,6 @@
             padding: 0px 50px;
             padding-bottom: 20px;
             z-index: 1;
-
-            .artistRow, .albumRow {
-                &:hover {
-                    cursor: pointer;
-                    text-decoration: underline;
-                }
-            }
             
             .isSearchVisible {
                 visibility: hidden;
