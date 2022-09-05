@@ -59,7 +59,7 @@ export class SpotifyService {
     if (!window.location.hash)
     return '';
 
-    const params = window.location.hash.substring(2).split('&');
+    const params = window.location.hash.substring(1).split('&');
     return params[0].split('=')[1];
     console.log(params);
   }
