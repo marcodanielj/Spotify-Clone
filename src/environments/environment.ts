@@ -10,7 +10,7 @@ export const SpotifyConfiguration = {
 
   clientID : '0e5fdb91db094bc9a6590bded989fd1d',
   authEndpoint : 'https://accounts.spotify.com/authorize',
-  redirectUrl : 'https://spotifytestclone.netlify.app/login',
+  redirectUrl : 'https://spotifytestclone.netlify.app/login/',
   scopes: [
     "user-read-currently-playing", // musica tocando agora.
     "user-read-recently-played", // ler musicas tocadas recentemente
