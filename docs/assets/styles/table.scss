@@ -1,0 +1,81 @@
+@import 'variables';
+
+.table {
+    width: 100%;
+    text-align: left;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    .play {
+        color: rgba($preto-transparente, $alpha: 0.3);
+        font-size: .5rem;
+    }
+
+    .playing {
+        background-color: rgba($color: white, $alpha: 0.2);
+        padding: 10px;
+        box-shadow: 0px 0px 40px 5px rgba($color: #000000, $alpha: 0.3);
+
+        td {
+            color: white;
+        }
+    }
+
+    thead th{
+        font-size: .75rem;
+        font-weight: 400;
+        color: $preto-transparente-30;
+    }
+
+    th, td {
+        padding-right: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:nth-child(1) {
+            padding-left: 10px;
+        }
+    }
+
+    tr {
+        &:hover {
+            
+             td {
+                background-color: rgba($preto-transparente, $alpha: 0.05);
+             }
+        }
+
+        td {
+            padding: 10px 20px 10px 0px;
+            margin-top: 10px;
+            font-weight: 500;
+            font-size: 1rem;
+            color: white;
+
+            &:nth-child(1) {
+                padding-left: 10px;
+            }
+        }
+    }
+
+    .w {
+        @for $i from 1 to 10 {
+            $width: $i * 5;
+            &-#{ $width } {
+                width: #{ $width * 1% };
+            }
+        }
+    }
+
+    .artistRow, .albumRow {
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+
+    .direita {
+        text-align: right;
+    }
+}
