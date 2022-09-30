@@ -1,38 +1,42 @@
 @import 'variables';
 
-div {
+.userBubble {
 
-    padding: 5px 5px;
-    justify-content: space-between;
+    height: 36.4px;
+    display: flex;
+    position: relative;
+    aspect-ratio: 1;
+    justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
-    color: white;
-    border-top: 1px solid $preto-transparente;
+    overflow: hidden;
+    box-shadow: 0px 0px 30px 1px #00000077;
 
-    img {
-        flex-grow: 0;
-        width: 40px;
-        height: auto;
-        border-radius: 50%;
+    border-radius: 100%;
+
+    .image {
+
+        height: 100%;
+        aspect-ratio: 1;
+        position: absolute;
+        z-index: 0;
+        background-position: center;
+        background-size: cover;
     }
 
-    span {
-        flex-grow: 1;
-        margin-left: 20px;
-        font-size: .9rem;
+
+    .logoutText {
+
+        padding: 50%;
+        position: absolute;
+        z-index: 1;
+        font-size: .7rem;
         font-weight: 500;
-    }
-
-    .icon {
-        flex-grow: 0;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
+        color: transparent;
 
         &:hover {
-            color: red;
-            background-color: #00000015;
+            cursor: pointer;
+            color: white;
+            background-color: red;
         }
     }
 }

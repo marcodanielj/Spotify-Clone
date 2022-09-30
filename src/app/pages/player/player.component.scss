@@ -15,8 +15,18 @@
 
     .searchBar {
         position: absolute;
+        right: 130px;
+        margin-top: 30px;
+        z-index: 1;
+        overflow: visible;
+    }
+
+    .userIcon {
+
+        position: absolute;
         right: 80px;
         margin-top: 30px;
         z-index: 1;
+
     }
 }

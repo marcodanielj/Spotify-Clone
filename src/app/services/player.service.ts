@@ -25,7 +25,7 @@ export class PlayerService {
     // Check again in 3000ms
     this.timerId = setInterval(async () => {
       await this.getCurrentTrack()
-    }, 1000)
+    }, 500)
   }
 
   setCurrentTrack(track: ITrack) {
